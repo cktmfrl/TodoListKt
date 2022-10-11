@@ -3,26 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/navigation_list">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.todolistkt.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
-
+        android:id="@+id/navigation_list"
+        android:name="com.example.todolistkt.ui.TodoListFragment"
+        android:label="@string/todo_list_label"
+        tools:layout="@layout/fragment_todo_list">
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_ListFragment_to_EditFragment"
+            app:destination="@id/navigation_edit" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.todolistkt.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
+        android:id="@+id/navigation_edit"
+        android:name="com.example.todolistkt.ui.EditTodoFragment"
+        tools:layout="@layout/fragment_edit_todo">
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_EditFragment_to_ListFragment"
+            app:destination="@id/navigation_list"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>
