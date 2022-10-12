@@ -10,7 +10,7 @@ import com.example.todolistkt.models.Todo
 class MainViewModel(application: Application) : AndroidViewModel(application) {
     val db = Room.databaseBuilder(
         application,
-        AppDatabase::class.java, "database-name"
+        AppDatabase::class.java, "todo-db"
     ).build()
 
     fun getAll(): LiveData<List<Todo>> {
