@@ -3,24 +3,23 @@ package com.example.todolistkt.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
-import com.example.todolistkt.R
 import com.example.todolistkt.databinding.ItemTodoBinding
 import com.example.todolistkt.models.Todo
 
-class TodoListAdapter : ListAdapter<Todo, TodoListAdapter.TodoViewHolder>(TodoDiffUtilCallback()) {
+class TodoListAdapter(private val onClick: (Todo) -> Unit) :
+    ListAdapter<Todo, TodoViewHolder>(TodoDiffUtilCallback()) {
+
+    private lateinit var binding: ItemTodoBinding
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_todo, parent, false)
-        val binding = ItemTodoBinding.bind(view)
-        return TodoViewHolder(binding)
+        binding = ItemTodoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return TodoViewHolder(binding, onClick)
     }
 
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
         val todo = getItem(position)
-        holder.binding.todo = todo
+        holder.bind(todo)
+        holder.setOnClickListener(todo)
     }
 
-    class TodoViewHolder(val binding: ItemTodoBinding) : RecyclerView.ViewHolder(binding.root)
 }

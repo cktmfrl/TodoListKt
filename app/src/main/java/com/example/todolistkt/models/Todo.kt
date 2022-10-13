@@ -9,5 +9,5 @@ data class Todo(
     var date: Long
 ) {
     @PrimaryKey(autoGenerate = true)
-    var uid: Int? = null
+    var uid: Int = 0
 }
